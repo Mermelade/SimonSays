@@ -63,10 +63,10 @@ preload.prototype = {
 		//this.game.load.audio("paradise","assets/paradise.mp3");
 		//this.game.load.audio("correct","assets/correct.ogg");
 		//this.game.load.audio("wrong","assets/wrong.ogg");
-		this.game.load.audio("sound1","assets/sounds_01.mp3");
-		this.game.load.audio("sound2","assets/sounds_02.mp3");
-		this.game.load.audio("sound3","assets/sounds_03.mp3");
-		this.game.load.audio("sound4","assets/sounds_04.mp3");
+		this.game.load.audio("sound1","assets/sounds_01.ogg");
+		this.game.load.audio("sound2","assets/sounds_02.ogg");
+		this.game.load.audio("sound3","assets/sounds_03.ogg");
+		this.game.load.audio("sound4","assets/sounds_04.ogg");
 	},
   	create: function(){
 		this.game.state.start("GameTitle");

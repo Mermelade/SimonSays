@@ -86,8 +86,8 @@ theSimonGame.prototype = {
     	//simonTitle = this.game.add.text(10*(1+i),64, '-' , { font: "16px Arial", fill: "#FFFFFF", align: "center" });
 
 		simon=true;
-		whosplayingText = game.add.text(game.world.centerX, game.world.centerY/2,"", { font: "175px Arial", fill: "#E60026", align: "center" });
-		whosplayingText.anchor.set(0.5);
+		//whosplayingText = game.add.text(game.world.centerX, game.world.centerY/2,"", { font: "175px Arial", fill: "#E60026", align: "center" });
+		//whosplayingText.anchor.set(0.5);
 		//this.whosplaying();
 		// get and play it Simon
 		this.getItSimon();
@@ -95,18 +95,20 @@ theSimonGame.prototype = {
 	},
 
 	whosplaying: function(){
-		whosplayingText.scale.set (0.5);
-		whosplayingTextTween = this.game.add.tween(whosplayingText.scale).to( { x: 0, y: 0 }, 500, Phaser.Easing.Linear.None, true);
+		//whosplayingText.scale.set (0.5);
+		//whosplayingTextTween = this.game.add.tween(whosplayingText.scale).to( { x: 0, y: 0 }, 500, Phaser.Easing.Linear.None, true);
 		if (simon) {
 			score ++;
 			scoreText.text = score;
 			//simonTitle.text='';
 			//samTitle.text='';
-			whosplayingText.text = "Simon"
-			whosplayingTextTween.onComplete.add(this.playItSimon, this);
+			//whosplayingText.text = "Simon"
+			//whosplayingTextTween.onComplete.add(this.playItSimon, this);
+			this.playItSimon();
 		} else {
-			whosplayingText.text = "You";
-			whosplayingTextTween.onComplete.add(this.playItSam, this);
+			//whosplayingText.text = "You";
+			//whosplayingTextTween.onComplete.add(this.playItSam, this);
+			this.playItSam();
 		}
 	},
 
@@ -132,27 +134,32 @@ theSimonGame.prototype = {
 			if (i < simonSequence.length-1) {
 				i++;
 			} else {
-				this.game.time.events.add(Phaser.Timer.SECOND * 1, this.getItSimon, this);
+				this.game.time.events.add(Phaser.Timer.SECOND * 0.5, this.getItSimon, this);
 				//this.getItSimon();
 			}
 			//button.events.onInputUp.add(this.clickedUp, button, this);
-		} else this.gameOver();
+		} else {
+			j=0;
+			// con 15 elementos de longitud consigo repeticiones + cortas
+			samSequence = [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1];
+			this.gameOver();
+		}
 	},
 	
 	played: function(button){
 		button.loadTexture(fullTexture);
 		if (button == redSprite) {
-			this.game.time.events.add(Phaser.Timer.SECOND * (1 - ((samSequence.length-1)/(samSequence.length+1))), this.redSpriteUp, this);
 			redsound.play();
+			this.game.time.events.add(Phaser.Timer.SECOND * (1 - ((samSequence.length-1)/(samSequence.length+1))), this.redSpriteUp, this);
 		} else if (button == greenSprite) {
-			this.game.time.events.add(Phaser.Timer.SECOND * (1 - ((samSequence.length-1)/(samSequence.length+1))), this.greenSpriteUp, this);
 			greensound.play();
+			this.game.time.events.add(Phaser.Timer.SECOND * (1 - ((samSequence.length-1)/(samSequence.length+1))), this.greenSpriteUp, this);
 		} else if (button == blueSprite) {
-			this.game.time.events.add(Phaser.Timer.SECOND * (1 - ((samSequence.length-1)/(samSequence.length+1))), this.blueSpriteUp, this);
 			bluesound.play();
+			this.game.time.events.add(Phaser.Timer.SECOND * (1 - ((samSequence.length-1)/(samSequence.length+1))), this.blueSpriteUp, this);
 		} else if (button == yellowSprite) {
-			this.game.time.events.add(Phaser.Timer.SECOND * (1 - ((samSequence.length-1)/(samSequence.length+1))), this.yellowSpriteUp, this);
 			yellowsound.play();
+			this.game.time.events.add(Phaser.Timer.SECOND * (1 - ((samSequence.length-1)/(samSequence.length+1))), this.yellowSpriteUp, this);
 		}
 	},
 	
@@ -251,9 +258,23 @@ theSimonGame.prototype = {
 	},
 	
 	gameOver: function () {
-		localStorage.setItem("topTablesScore",Math.max(score,topScore));
-		localStorage.setItem("topTablesMoney",Math.max(money,topMoney));
-		this.game.state.start("LevelComplete",true,false,score,topScore);
+		if (j<5) {
+			if (simonSequence[i]==1) {
+				this.played(redSprite);
+			} else if (simonSequence[i]==2) {
+				this.played(greenSprite);
+			} else if (simonSequence[i]==3) {
+				this.played(blueSprite);
+			} else if (simonSequence[i]==4) {
+				this.played(yellowSprite);
+			}
+			j++;
+			this.game.time.events.add(Phaser.Timer.SECOND * 0.25, this.gameOver, this);
+		} else {
+			localStorage.setItem("topTablesScore",Math.max(score,topScore));
+			localStorage.setItem("topTablesMoney",Math.max(money,topMoney));
+			this.game.state.start("LevelComplete",true,false,score,topScore);
+		}
 	},
 
 	update: function () {

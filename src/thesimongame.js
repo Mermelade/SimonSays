@@ -13,6 +13,13 @@ var samSequence = new Array();
 var simonTitle;
 var samTitle;
 var i=0;
+var scoreText;
+var whiteTexture;
+var fullTexture;
+var redSprite;
+var greenSprite;
+var blueSprite;
+var yellowSprite;
 
 //usadas en levelcomplete
 var totalMoney=0;
@@ -74,10 +81,13 @@ theSimonGame.prototype = {
   		scoreText.anchor.set(0.5);
 
 		redsound = this.game.add.audio('sound1');
+		redsound.addMarker('redsound0', 0.05, 0.1);
 		greensound = this.game.add.audio('sound2');
+		greensound.addMarker('greensound0', 0.05, 0.1);
 		bluesound = this.game.add.audio('sound3');
+		bluesound.addMarker('bluesound0', 0.05, 0.1);
 		yellowsound = this.game.add.audio('sound4');
-
+		yellowsound.addMarker('yellowsound0', 0.05, 0.1);
 
 		// whos playing
 		simonSequence = [];
@@ -149,16 +159,16 @@ theSimonGame.prototype = {
 	played: function(button){
 		button.loadTexture(fullTexture);
 		if (button == redSprite) {
-			redsound.play();
+			redsound.play('redsound0');
 			this.game.time.events.add(Phaser.Timer.SECOND * (1 - ((samSequence.length-1)/(samSequence.length+1))), this.redSpriteUp, this);
 		} else if (button == greenSprite) {
-			greensound.play();
+			greensound.play('greensound0');
 			this.game.time.events.add(Phaser.Timer.SECOND * (1 - ((samSequence.length-1)/(samSequence.length+1))), this.greenSpriteUp, this);
 		} else if (button == blueSprite) {
-			bluesound.play();
+			bluesound.play('bluesound0');
 			this.game.time.events.add(Phaser.Timer.SECOND * (1 - ((samSequence.length-1)/(samSequence.length+1))), this.blueSpriteUp, this);
 		} else if (button == yellowSprite) {
-			yellowsound.play();
+			yellowsound.play('yellowsound0');
 			this.game.time.events.add(Phaser.Timer.SECOND * (1 - ((samSequence.length-1)/(samSequence.length+1))), this.yellowSpriteUp, this);
 		}
 	},

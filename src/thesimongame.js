@@ -81,13 +81,13 @@ theSimonGame.prototype = {
   		scoreText.anchor.set(0.5);
 
 		redsound = this.game.add.audio('sound1');
-		redsound.addMarker('redsound0', 0.05, 0.07);
+		redsound.addMarker('redsound0', 0.05, 0.06);
 		greensound = this.game.add.audio('sound2');
-		greensound.addMarker('greensound0', 0.05, 0.07);
+		greensound.addMarker('greensound0', 0.05, 0.06);
 		bluesound = this.game.add.audio('sound3');
-		bluesound.addMarker('bluesound0', 0.05, 0.07);
+		bluesound.addMarker('bluesound0', 0.05, 0.06);
 		yellowsound = this.game.add.audio('sound4');
-		yellowsound.addMarker('yellowsound0', 0.05, 0.07);
+		yellowsound.addMarker('yellowsound0', 0.05, 0.06);
 
 		// whos playing
 		simonSequence = [];
@@ -130,16 +130,16 @@ theSimonGame.prototype = {
 		if (simonSequence[i] == samSequence[i]) {
 			if (button == redSprite) {
 				this.game.time.events.add(Phaser.Timer.SECOND * 0.2, this.redSpriteUp, this);
-				redsound.play();
+				redsound.play('redsound0');
 			} else if (button == greenSprite) {
 				this.game.time.events.add(Phaser.Timer.SECOND * 0.2, this.greenSpriteUp, this);
-				greensound.play();
+				greensound.play('greensound0');
 			} else if (button == blueSprite) {
 				this.game.time.events.add(Phaser.Timer.SECOND * 0.2, this.blueSpriteUp, this);
-				bluesound.play();
+				bluesound.play('bluesound0');
 			} else if (button == yellowSprite) {
 				this.game.time.events.add(Phaser.Timer.SECOND * 0.2, this.yellowSpriteUp, this);
-				yellowsound.play();
+				yellowsound.play('yellowsound0');
 			}
 			if (i < simonSequence.length-1) {
 				i++;
@@ -251,7 +251,7 @@ theSimonGame.prototype = {
 		// si no he llegado al final aumento una posición y repito showSimonSecuence
 		if (i < simonSequence.length) {
 			i++;
-			this.game.time.events.add(Phaser.Timer.SECOND * (1.005 - ((samSequence.length-1)/(samSequence.length+1))), this.showSimonSecuence, this);
+			this.game.time.events.add(Phaser.Timer.SECOND * (1.05 - ((samSequence.length-1)/(samSequence.length+1))), this.showSimonSecuence, this);
 		} else { // si he llegado al final cambio el turno
 			simon = false;
 			this.whosplaying();

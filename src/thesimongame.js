@@ -36,7 +36,7 @@ theSimonGame.prototype = {
 
 		// create rectangle graphic and texture white alpha 55%
 		var whiteSquare = game.add.graphics(0, 0);
-		whiteSquare.beginFill(0xFFFFFF, 0.55);
+		whiteSquare.beginFill(0xFFFFFF, 0.45);
     	whiteSquare.drawRect(0, 0, game.world.centerX, game.world.centerY);
 		whiteSquare.endFill();
 		whiteSquare.visible=false;

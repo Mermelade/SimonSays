@@ -81,13 +81,13 @@ theSimonGame.prototype = {
   		scoreText.anchor.set(0.5);
 
 		redsound = this.game.add.audio('sound1');
-		redsound.addMarker('redsound0', 0.05, 0.06);
+		redsound.addMarker('redsound0', 0.05, 0.07);
 		greensound = this.game.add.audio('sound2');
-		greensound.addMarker('greensound0', 0.05, 0.06);
+		greensound.addMarker('greensound0', 0.05, 0.07);
 		bluesound = this.game.add.audio('sound3');
-		bluesound.addMarker('bluesound0', 0.05, 0.06);
+		bluesound.addMarker('bluesound0', 0.05, 0.07);
 		yellowsound = this.game.add.audio('sound4');
-		yellowsound.addMarker('yellowsound0', 0.05, 0.06);
+		yellowsound.addMarker('yellowsound0', 0.05, 0.07);
 
 		// whos playing
 		simonSequence = [];

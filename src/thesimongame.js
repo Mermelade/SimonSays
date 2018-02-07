@@ -81,13 +81,13 @@ theSimonGame.prototype = {
   		scoreText.anchor.set(0.5);
 
 		redsound = this.game.add.audio('sound1');
-		redsound.addMarker('redsound0', 0.05, 0.07);
+		redsound.addMarker('redsound0', 0.05, 0.10);
 		greensound = this.game.add.audio('sound2');
-		greensound.addMarker('greensound0', 0.05, 0.07);
+		greensound.addMarker('greensound0', 0.05, 0.10);
 		bluesound = this.game.add.audio('sound3');
-		bluesound.addMarker('bluesound0', 0.05, 0.07);
+		bluesound.addMarker('bluesound0', 0.05, 0.10);
 		yellowsound = this.game.add.audio('sound4');
-		yellowsound.addMarker('yellowsound0', 0.05, 0.07);
+		yellowsound.addMarker('yellowsound0', 0.05, 0.10);
 
 		// whos playing
 		simonSequence = [];
@@ -144,7 +144,7 @@ theSimonGame.prototype = {
 			if (i < simonSequence.length-1) {
 				i++;
 			} else {
-				this.game.time.events.add(Phaser.Timer.SECOND * 0.5, this.getItSimon, this);
+				this.game.time.events.add(Phaser.Timer.SECOND * 0.75, this.getItSimon, this);
 				//this.getItSimon();
 			}
 			//button.events.onInputUp.add(this.clickedUp, button, this);

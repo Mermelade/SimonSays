@@ -7,7 +7,7 @@ gameTitle.prototype = {
   		background.scale.setTo(0.56,0.56);
 
 		//Game Headline: Times Tables
-		var gameTitleText = this.game.add.text(this.game.world.centerX,this.game.world.centerY-165, "Simon\nsays" , { font: "bold 64px/60px Arial", fill: "#FFFFFF", align: "center" });
+		var gameTitleText = this.game.add.text(this.game.world.centerX,this.game.world.centerY-165, "Simon\nSays" , { font: "bold 64px/60px Arial", fill: "#FFFFFF", align: "center" });
 		gameTitleText.stroke = "#4adbff"; //#00ccff
 		gameTitleText.strokeThickness = 14;
 		gameTitleText.setShadow(4, 3, "#02b1dd", 2, true, true);

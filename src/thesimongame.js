@@ -174,28 +174,28 @@ theSimonGame.prototype = {
 	},
 	
 	clickedUp: function(button){
-		button.loadTexture(whiteTexture)
+		button.loadTexture(whiteTexture);
 		//button.tint = button.tint*2;
 	},
 
 	redSpriteUp: function(){
-		redsound.stop();
-		redSprite.loadTexture(whiteTexture)
+		//redsound.stop();
+		redSprite.loadTexture(whiteTexture);
 	},
 	
 	greenSpriteUp: function(){
-		greensound.stop();
-		greenSprite.loadTexture(whiteTexture)
+		//greensound.stop();
+		greenSprite.loadTexture(whiteTexture);
 	},
 	
 	blueSpriteUp: function(){
-		bluesound.stop();
-		blueSprite.loadTexture(whiteTexture)
+		//bluesound.stop();
+		blueSprite.loadTexture(whiteTexture);
 	},
 		
 	yellowSpriteUp: function(){
-		yellowsound.stop();
-		yellowSprite.loadTexture(whiteTexture)
+		//yellowsound.stop();
+		yellowSprite.loadTexture(whiteTexture);
 	},
 	
 	getItSimon: function () {

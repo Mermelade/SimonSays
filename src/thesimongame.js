@@ -20,6 +20,10 @@ var redSprite;
 var greenSprite;
 var blueSprite;
 var yellowSprite;
+var redsound;
+var greensound;
+var bluesound;
+var yellowsound;
 
 //usadas en levelcomplete
 var totalMoney=0;
@@ -77,7 +81,7 @@ theSimonGame.prototype = {
 		yellowSprite.inputEnabled = true;
 		yellowSprite.events.onInputDown.add(this.clicked, this);
 
-  		scoreText = game.add.text(game.world.centerX, game.world.centerY,score, { font: "75px Arial", fill: "#FFFFFF", align: "center" });
+  		scoreText = game.add.text(game.world.centerX, game.world.centerY,score, { font: "125px Arial", fill: "#FFFFFF", align: "center" });
   		scoreText.anchor.set(0.5);
 
 		redsound = this.game.add.audio('sound1');
@@ -89,35 +93,22 @@ theSimonGame.prototype = {
 		yellowsound = this.game.add.audio('sound4');
 		yellowsound.addMarker('yellowsound0', 0.05, 0.10);
 
-		// whos playing
+		// Setup
 		simonSequence = [];
 		samSequence = [];
-		//samTitle = this.game.add.text(10*(1+i),96, '-' , { font: "16px Arial", fill: "#FFFFFF", align: "center" });
-    	//simonTitle = this.game.add.text(10*(1+i),64, '-' , { font: "16px Arial", fill: "#FFFFFF", align: "center" });
-
 		simon=true;
-		//whosplayingText = game.add.text(game.world.centerX, game.world.centerY/2,"", { font: "175px Arial", fill: "#E60026", align: "center" });
-		//whosplayingText.anchor.set(0.5);
-		//this.whosplaying();
+		
 		// get and play it Simon
 		this.getItSimon();
-		//this.playItSimon();
+
 	},
 
 	whosplaying: function(){
-		//whosplayingText.scale.set (0.5);
-		//whosplayingTextTween = this.game.add.tween(whosplayingText.scale).to( { x: 0, y: 0 }, 500, Phaser.Easing.Linear.None, true);
 		if (simon) {
 			score ++;
 			scoreText.text = score;
-			//simonTitle.text='';
-			//samTitle.text='';
-			//whosplayingText.text = "Simon"
-			//whosplayingTextTween.onComplete.add(this.playItSimon, this);
 			this.playItSimon();
 		} else {
-			//whosplayingText.text = "You";
-			//whosplayingTextTween.onComplete.add(this.playItSam, this);
 			this.playItSam();
 		}
 	},
@@ -125,8 +116,7 @@ theSimonGame.prototype = {
 	clicked: function(button){
 		button.loadTexture(fullTexture);
 		samSequence[i]=button.valor;
-		//samTitle.text += samSequence[i];
-		
+
 		if (simonSequence[i] == samSequence[i]) {
 			if (button == redSprite) {
 				this.game.time.events.add(Phaser.Timer.SECOND * 0.2, this.redSpriteUp, this);
@@ -145,9 +135,7 @@ theSimonGame.prototype = {
 				i++;
 			} else {
 				this.game.time.events.add(Phaser.Timer.SECOND * 0.75, this.getItSimon, this);
-				//this.getItSimon();
 			}
-			//button.events.onInputUp.add(this.clickedUp, button, this);
 		} else {
 			j=0;
 			// con 15 elementos de longitud consigo repeticiones + cortas
@@ -175,7 +163,6 @@ theSimonGame.prototype = {
 	
 	clickedUp: function(button){
 		button.loadTexture(whiteTexture);
-		//button.tint = button.tint*2;
 	},
 
 	redSpriteUp: function(){
@@ -206,38 +193,15 @@ theSimonGame.prototype = {
 
 		simon = true;
 		simonSequence[simonSequence.length] = (Math.floor(Math.random()*4)+1);
-		//var levelTitle = this.game.add.text(32*(1+simonSequence.length-1),32, simonSequence[simonSequence.length-1] , { font: "16px Arial", fill: "#FFFFFF", align: "center" });
-    	//levelTitle.anchor.set(0.5);
-
-		//var levelTitle0 = this.game.add.text(64,100, simonSequence[0] , { font: "16px Arial", fill: "#FFFFFF", align: "center" });
-    	//levelTitle0.anchor.set(0.5);
-		//var levelTitle1 = this.game.add.text(64,110, simonSequence[simonSequence.lenght] , { font: "16px Arial", fill: "#FFFFFF", align: "center" });
-    	//levelTitle1.anchor.set(0.5);
-
-
-		//for (var i=0; i<4; i++) {
-			//simonSequence.push(Math.floor(Math.random()*4)+1);
-		//	simonSequence[i]=(Math.floor(Math.random()*4)+1);
-		//	var levelTitle = this.game.add.text(32*(1+i),32, simonSequence[i] , { font: "16px Arial", fill: "#FFFFFF", align: "center" });
-	    //	levelTitle.anchor.set(0.5);
-		//}
 		this.whosplaying();
 	},
 	
 	playItSimon: function () {
 		i=0;
-		
 		this.showSimonSecuence();
-
-		//this.game.time.events.add(Phaser.Timer.SECOND * 1, this.unpaused, this);
-		//simonSequence.length+1	
-		//RandomDataGenerator.integerInRange(1,4)
-		//RandomDataGenerator.between
 	},
 
 	showSimonSecuence: function () {
-    	//simonTitle.text += simonSequence[i];
-
 		if (simonSequence[i]==1) {
 			this.played(redSprite);
 		} else if (simonSequence[i]==2) {

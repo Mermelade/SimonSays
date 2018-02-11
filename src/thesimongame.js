@@ -1,18 +1,10 @@
-var countdown;
 var score;
-var money=0;
 var topScore;
-var topMoney;
-var countdownText;
-var countdownTween;
-
-//SimonSays
 var simon = true;
 var simonSequence = new Array();
 var samSequence = new Array();
-var simonTitle;
-var samTitle;
 var i=0;
+var j=0;
 var scoreText;
 var whiteTexture;
 var fullTexture;
@@ -25,36 +17,31 @@ var greensound;
 var bluesound;
 var yellowsound;
 
-//usadas en levelcomplete
-var totalMoney=0;
-var totalScore=0;
 
 var theSimonGame = function(game){};
 
 theSimonGame.prototype = {
   	create: function(game){
   		
-  		// create background hills
- 		var background = this.game.add.tileSprite(0,0,this.game.width*50,this.game.height*3, 'hills');
-  		background.scale.set(0.35);
+  		// create background
+  		var bckgnd = this.game.stage;
+  		bckgnd.backgroundColor = '#000000';
 
-  		// score, life, money, topScore and topMoney init
+  		// score and topScore init
   		score = 0;
-  		money = 0;
   		topScore = localStorage.getItem("topTablesScore")==null?0:localStorage.getItem("topTablesScore");
-		topMoney = localStorage.getItem("topTablesMoney")==null?0:localStorage.getItem("topTablesMoney");
 		i=0;
 
 		// create rectangle graphic and texture white alpha 55%
 		var whiteSquare = game.add.graphics(0, 0);
-		whiteSquare.beginFill(0xFFFFFF, 0.45);
+		whiteSquare.beginFill(0xFFFFFF, 0.50);
     	whiteSquare.drawRect(0, 0, game.world.centerX, game.world.centerY);
 		whiteSquare.endFill();
 		whiteSquare.visible=false;
 		whiteTexture = whiteSquare.generateTexture();
 		// create rectangle graphic and texture white alpha 85%
 		var fullSquare = game.add.graphics(0, 0);
-		fullSquare.beginFill(0xFFFFFF, 0.85);
+		fullSquare.beginFill(0xFFFFFF, 1);
     	fullSquare.drawRect(0, 0, game.world.centerX, game.world.centerY);
 		fullSquare.endFill();
 		fullSquare.visible=false;
@@ -81,7 +68,7 @@ theSimonGame.prototype = {
 		yellowSprite.inputEnabled = true;
 		yellowSprite.events.onInputDown.add(this.clicked, this);
 
-  		scoreText = game.add.text(game.world.centerX, game.world.centerY,score, { font: "125px Arial", fill: "#FFFFFF", align: "center" });
+  		scoreText = game.add.text(game.world.centerX, game.world.centerY,score, { font: "bold 225px Arial", fill: "#C1C1C1", align: "center" });
   		scoreText.anchor.set(0.5);
 
 		redsound = this.game.add.audio('sound1');
@@ -246,8 +233,7 @@ theSimonGame.prototype = {
 			this.game.time.events.add(Phaser.Timer.SECOND * 0.25, this.gameOver, this);
 		} else {
 			localStorage.setItem("topTablesScore",Math.max(score,topScore));
-			localStorage.setItem("topTablesMoney",Math.max(money,topMoney));
-			this.game.state.start("LevelComplete",true,false,score,topScore);
+			this.game.state.start("GameOver",true,false,score,topScore);
 		}
 	},
 

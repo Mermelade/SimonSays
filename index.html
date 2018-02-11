@@ -12,9 +12,8 @@
 		<script src="src/preload.js"></script>
 		<script src="src/gameoptions.js"></script>
 		<script src="src/gametitle.js"></script>
-		<script src="src/newlevel.js"></script>
 		<script src="src/thesimongame.js"></script>
-		<script src="src/levelcomplete.js"></script>
+		<script src="src/gameover.js"></script>
 		<script src="src/levels.js"></script>	
 		<style>
 			body {
@@ -30,9 +29,8 @@
 				game.state.add("Preload",preload);
 				game.state.add("GameOptions",gameOptions);
 				game.state.add("GameTitle",gameTitle);
-				game.state.add("NewLevel",newLevel);
 				game.state.add("TheSimonGame",theSimonGame);
-				game.state.add("LevelComplete",levelComplete);
+				game.state.add("GameOver",gameOver);
 				game.state.add("Levels",levels);
 				game.state.start("Boot");
 			})();    

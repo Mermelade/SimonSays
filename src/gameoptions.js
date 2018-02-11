@@ -16,11 +16,11 @@ gameOptions.prototype = {
 		gearButton.scale.set(0.75);
 
 	},
-	
 
 	levels: function(){
 		this.game.state.start("Levels");
-	},	
+	},
+
 	optionsGame: function(){
 		this.game.state.start("GameTitle");
 	},

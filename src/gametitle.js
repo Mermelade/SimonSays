@@ -41,11 +41,13 @@ gameTitle.prototype = {
 	},
 	
 	playTheRace: function(){
-		this.game.state.start("NewLevel");
+		this.game.state.start("TheSimonGame");
 	},
+	
 	levels: function(){
 		this.game.state.start("Levels");
-	},	
+	},
+	
 	optionsGame: function(){
 		this.game.state.start("GameOptions");
 	},
